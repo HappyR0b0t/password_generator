@@ -7,20 +7,24 @@ def char_count():
         PWD_LENGTH = input("Enter a desired character count: ")
         try:
             PWD_LENGTH = int(PWD_LENGTH)
-        except:
-            print("Please enter integer number as a desired password character count: ")
+        except ValueError:
+            print(
+                "Please enter integer number as a"
+                "desired password character count: "
+            )
             continue
         if PWD_LENGTH < 1:
             print("Password character count must be greater than zero: ")
             continue
         return PWD_LENGTH
 
+
 def exclusion_choice(m, chars):
     while True:
         m = input(f"Exclude characters like '{chars}' ? Enter yes/no: ")
         try:
             m = str(m)
-        except:
+        except ValueError:
             print("Please enter yes/no: ")
             continue
         if m == 'yes':
@@ -29,6 +33,7 @@ def exclusion_choice(m, chars):
             return False
         else:
             continue
+
 
 def pwd_generator(PWD_LENGTH):
     letters = string.ascii_letters
@@ -50,10 +55,10 @@ def pwd_generator(PWD_LENGTH):
             alphabet = alphabet.replace(i, '')
         return alphabet
 
-    if EXCL_SMLR_CHARS == True:
+    if EXCL_SMLR_CHARS is True:
         alphabet = char_exclusion(alphabet, similar_characters)
 
-    if EXCL_AMBGS_CHARS == True:
+    if EXCL_AMBGS_CHARS is True:
         alphabet = char_exclusion(alphabet, ambigous_chars)
 
     for i in range(PWD_LENGTH):
@@ -62,7 +67,9 @@ def pwd_generator(PWD_LENGTH):
     print("Your password is:")
     print(PWD)
 
+
 def main():
     pwd_generator(char_count())
+
 
 main()
