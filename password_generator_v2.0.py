@@ -40,7 +40,7 @@ def pwd_generator(PWD_LENGTH):
     digits = string.digits
     special_chars = string.punctuation
     similar_characters = 'il1Lo0O'
-    ambigous_chars =  '{}[\\]()/\'"`~,;:.<>|'
+    ambigous_chars = '{}[\\]()/\'"`~,;:.<>|'
     alphabet = letters + digits + special_chars
 
     EXCL_SMLR_CHARS = False
