@@ -32,34 +32,24 @@ def exclusion_choice(chars):
             return True
         elif yes_no == 'no':
             return False
-        else:
-            continue
 
 
 def char_exclusion(alphabet, chars):
-    excl_chars = exclusion_choice(chars)
-
-    if excl_chars is True:
+    if exclusion_choice(chars):
         for i in chars:
             alphabet = alphabet.replace(i, '')
-
     return alphabet
 
 
 def pwd_generator(pwd_length, alphabet):
-    pwd = ''
-
-    for _ in range(pwd_length):
-        pwd += secrets.choice(alphabet)
-
-    return pwd
+    return "".join(secrets.choice(alphabet) for _ in range(pwd_length))
 
 
-def main():
-    pwd = pwd_generator(
-        char_count(),
-        char_exclusion(char_exclusion(alphabet, similar_chars), ambigous_chars)
-    )
+def main(alphabet=alphabet):
+    pwd_length = char_count()
+    alphabet = char_exclusion(alphabet, similar_chars)
+    alphabet = char_exclusion(alphabet, ambigous_chars)
+    pwd = pwd_generator(pwd_length, alphabet)
     print("Your password is: ", pwd)
 
 
